@@ -710,6 +710,199 @@
   .diagram-wrap { width: 100%; overflow-x: auto; }
   svg.arch-svg { display: block; margin: 0 auto; max-width: 100%; }
 
+  .arch-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+
+  .arch-kicker {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .arch-toolbar p {
+    margin-top: 8px;
+    max-width: 760px;
+    color: #94a3b8;
+    font-size: 14px;
+  }
+
+  .arch-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .arch-btn {
+    border: 1px solid var(--border);
+    background: rgba(0,212,255,0.06);
+    color: var(--text);
+    border-radius: 8px;
+    padding: 10px 14px;
+    cursor: pointer;
+    font-family: var(--mono);
+    font-size: 12px;
+    transition: all 0.2s;
+  }
+
+  .arch-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: rgba(0,212,255,0.1);
+  }
+
+  .arch-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.9fr) minmax(320px, 1fr);
+    gap: 22px;
+    align-items: start;
+  }
+
+  .arch-card {
+    background: rgba(17,24,39,0.8);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px;
+  }
+
+  .arch-card h3 {
+    font-family: var(--display);
+    font-size: 1.05rem;
+    margin-bottom: 12px;
+    color: #fff;
+  }
+
+  .arch-meta {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+    margin-top: 16px;
+  }
+
+  .arch-meta-item {
+    background: rgba(7,12,24,0.9);
+    border: 1px solid rgba(0,212,255,0.12);
+    border-radius: 10px;
+    padding: 12px;
+  }
+
+  .arch-meta-item span {
+    display: block;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 1.3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+
+  .arch-meta-item strong {
+    color: #fff;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .arch-list {
+    display: grid;
+    gap: 10px;
+    margin-top: 14px;
+  }
+
+  .arch-list-item {
+    background: rgba(7,12,24,0.9);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 14px;
+  }
+
+  .arch-list-item strong {
+    display: block;
+    color: #fff;
+    margin-bottom: 4px;
+  }
+
+  .arch-list-item p {
+    color: #94a3b8;
+    font-size: 13px;
+  }
+
+  .arch-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 14px;
+  }
+
+  .arch-legend span {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: #cbd5e1;
+  }
+
+  .arch-legend i {
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+    display: inline-block;
+  }
+
+  .arch-checklist {
+    display: grid;
+    gap: 10px;
+    margin-top: 14px;
+  }
+
+  .arch-check {
+    border-radius: 10px;
+    padding: 12px 14px;
+    border: 1px solid transparent;
+    font-size: 13px;
+  }
+
+  .arch-check strong {
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .check-ok {
+    background: rgba(16,185,129,0.08);
+    border-color: rgba(16,185,129,0.2);
+    color: #b7f7d6;
+  }
+
+  .check-warn {
+    background: rgba(245,158,11,0.09);
+    border-color: rgba(245,158,11,0.24);
+    color: #fde0a6;
+  }
+
+  .check-miss {
+    background: rgba(239,68,68,0.09);
+    border-color: rgba(239,68,68,0.24);
+    color: #fecaca;
+  }
+
+  .arch-footnote {
+    margin-top: 16px;
+    color: var(--muted);
+    font-size: 12px;
+  }
+
+  @media (max-width: 900px) {
+    .arch-body { padding: 22px; }
+    .arch-grid { grid-template-columns: 1fr; }
+  }
+
   /* Footer */
   .footer {
     border-top: 1px solid var(--border);
@@ -808,7 +1001,7 @@
           <select class="wiz-select" id="w-az-count" onchange="updateAZCount()">
             <option value="1">1 AZ (single-zone — not recommended for production)</option>
             <option value="2" selected>2 AZs (recommended — high availability)</option>
-            <option value="3">3 AZs (multi-region redundancy)</option>
+              <option value="3">3 AZs (multi-AZ redundancy)</option>
             <option value="4">4 AZs (maximum redundancy)</option>
           </select>
         </div>
@@ -969,6 +1162,7 @@
     <span class="toc-item" onclick="scrollToPart('part6')">06 · ALB</span>
     <span class="toc-item" onclick="scrollToPart('part7')">07 · Auto Scaling</span>
     <span class="toc-item" onclick="scrollToPart('part8')">08 · Testing</span>
+    <span class="toc-item" onclick="scrollToPart('architecture')">ARCH · Diagram</span>
   </div>
 
   <div class="stats-bar">
@@ -1231,11 +1425,329 @@ function generateGuide() {
   renderGuide();
 }
 
+function subnetWithAz(c) {
+  return c.subnets.map((s, i) => ({
+    ...s,
+    az: c.azNames[i % c.azCount] || c.azNames[0]
+  }));
+}
+
+function distributeAppInstances(total, slots) {
+  const safeSlots = Math.max(slots, 1);
+  const counts = Array.from({ length: safeSlots }, () => 0);
+  for (let i = 0; i < total; i++) counts[i % safeSlots] += 1;
+  return counts;
+}
+
+function wrapSvgText(text, maxChars, maxLines = 4) {
+  const words = String(text || '').split(/\s+/).filter(Boolean);
+  if (!words.length) return [''];
+
+  const lines = [];
+  let current = '';
+
+  words.forEach(word => {
+    const tentative = current ? `${current} ${word}` : word;
+    if (tentative.length <= maxChars) {
+      current = tentative;
+      return;
+    }
+    if (current) lines.push(current);
+    current = word;
+  });
+
+  if (current) lines.push(current);
+
+  if (lines.length > maxLines) {
+    const trimmed = lines.slice(0, maxLines);
+    trimmed[maxLines - 1] = `${trimmed[maxLines - 1].slice(0, Math.max(maxChars - 3, 1))}...`;
+    return trimmed;
+  }
+
+  return lines;
+}
+
+function svgTextBlock(lines, x, y, lineHeight, fill, fontSize, fontFamily) {
+  return `
+    <text x="${x}" y="${y}" font-size="${fontSize}" fill="${fill}" font-family="${fontFamily}">
+      ${lines.map((line, idx) => `<tspan x="${x}" dy="${idx === 0 ? 0 : lineHeight}">${escapeHtml(line)}</tspan>`).join('')}
+    </text>
+  `;
+}
+
+function getArchitectureChecks(c, azTopology) {
+  const min = parseInt(c.asgMin, 10);
+  const desired = parseInt(c.asgDesired, 10);
+  const max = parseInt(c.asgMax, 10);
+  const publicAzCoverage = new Set(azTopology.filter(zone => zone.publicSubnets.length).map(zone => zone.az)).size;
+  const privateAzCoverage = new Set(azTopology.filter(zone => zone.privateSubnets.length).map(zone => zone.az)).size;
+  const hasAurora = c.dbEngine.includes('Aurora');
+
+  const checks = [];
+
+  checks.push(
+    c.publicSubnets.length
+      ? { level: 'ok', title: 'Public entry tier is defined', detail: `${c.publicSubnets.length} public subnet(s) available for ALB, bastion, and NAT placement.` }
+      : { level: 'miss', title: 'Public subnet layer is missing', detail: 'Without at least one public subnet, ALB, bastion access, and NAT egress cannot be created.' }
+  );
+
+  checks.push(
+    c.privateSubnets.length
+      ? { level: 'ok', title: 'Private workload tier is defined', detail: `${c.privateSubnets.length} private subnet(s) are available for application servers and the database.` }
+      : { level: 'miss', title: 'Private subnet layer is missing', detail: 'The application and database tiers should be placed in private subnets for this architecture.' }
+  );
+
+  if (min > desired || desired > max) {
+    checks.push({ level: 'miss', title: 'ASG sizing is inconsistent', detail: `Current values are Min ${min}, Desired ${desired}, Max ${max}. The valid order is Min <= Desired <= Max.` });
+  } else {
+    checks.push({ level: 'ok', title: 'ASG sizing is internally valid', detail: `Min ${min}, Desired ${desired}, Max ${max} is a valid scaling range.` });
+  }
+
+  if (c.azCount > 1 && publicAzCoverage < 2) {
+    checks.push({ level: 'warn', title: 'Public high availability is limited', detail: `You selected ${c.azCount} AZs, but only ${publicAzCoverage} AZ(s) currently have a public subnet for the ALB path.` });
+  } else if (publicAzCoverage >= 2) {
+    checks.push({ level: 'ok', title: 'Public traffic can span multiple AZs', detail: `Public subnet coverage reaches ${publicAzCoverage} AZ(s), which supports ALB-level redundancy.` });
+  }
+
+  if (privateAzCoverage < Math.min(c.azCount, 2)) {
+    checks.push({ level: 'warn', title: 'Private tier AZ coverage is thin', detail: `Only ${privateAzCoverage} AZ(s) currently host private subnets, so failover capacity is reduced.` });
+  } else {
+    checks.push({ level: 'ok', title: 'Private tier AZ coverage supports failover', detail: `Private workloads can be distributed across ${privateAzCoverage} AZ(s).` });
+  }
+
+  if (desired < 2) {
+    checks.push({ level: 'warn', title: 'Desired app capacity is not highly available', detail: 'A desired capacity below 2 means one app instance failure can leave the service unavailable.' });
+  } else {
+    checks.push({ level: 'ok', title: 'Desired app capacity supports redundancy', detail: `${desired} app instance(s) can be distributed across the private subnets.` });
+  }
+
+  if (c.publicSubnets.length && c.privateSubnets.length && c.azCount > 1) {
+    checks.push({ level: 'warn', title: 'NAT gateway is single-AZ in this guide', detail: 'The generated walkthrough uses one NAT gateway in the first public subnet. That is exam-friendly and cheaper, but full production resilience normally uses one NAT gateway per AZ.' });
+  }
+
+  if (privateAzCoverage < 2) {
+    checks.push({ level: 'warn', title: 'Database subnet spread is limited', detail: 'RDS high availability is strongest when private subnets exist in at least two AZs.' });
+  } else {
+    checks.push({ level: 'ok', title: 'Database subnet spread is suitable', detail: 'Private subnets exist in at least two AZs, which is appropriate for a resilient RDS placement.' });
+  }
+
+  if (hasAurora) {
+    checks.push({ level: 'warn', title: 'Aurora is not a free-tier selection', detail: 'Aurora is valid for the diagram, but the database creation step should use a dev/test template rather than free tier expectations.' });
+  }
+
+  if (c.azCount === 1) {
+    checks.push({ level: 'warn', title: 'Single-AZ deployment only', detail: 'This is simpler for practice, but it is not resilient against an AZ outage.' });
+  }
+
+  return checks;
+}
+
+function renderArchitectureSvg(c, azTopology) {
+  const width = 320 + (c.azCount * 250);
+  const height = 840;
+  const vpcX = 70;
+  const vpcY = 120;
+  const vpcWidth = width - 140;
+  const vpcHeight = 650;
+  const colWidth = (vpcWidth - 40) / c.azCount;
+  const publicY = 250;
+  const privateY = 490;
+  const subnetHeight = 150;
+  const appZones = azTopology.filter(zone => zone.privateSubnets.length);
+  const appDistribution = distributeAppInstances(parseInt(c.asgDesired, 10), appZones.length || c.azCount);
+  const firstPublicZoneIndex = azTopology.findIndex(zone => zone.publicSubnets.length);
+  let appDistIndex = 0;
+
+  const zoneBlocks = azTopology.map((zone, idx) => {
+    const zoneX = vpcX + 20 + (idx * colWidth);
+    const subnetWidth = colWidth - 18;
+    const publicLabel = zone.publicSubnets.length
+      ? zone.publicSubnets.map(s => `${s.name} (${s.cidr})`).join(' • ')
+      : 'No public subnet configured';
+    const privateLabel = zone.privateSubnets.length
+      ? zone.privateSubnets.map(s => `${s.name} (${s.cidr})`).join(' • ')
+      : 'No private subnet configured';
+    const publicLines = wrapSvgText(publicLabel, Math.max(Math.floor(subnetWidth / 8), 16), 4);
+    const privateLines = wrapSvgText(privateLabel, Math.max(Math.floor(subnetWidth / 8), 16), 4);
+    const instanceCount = zone.privateSubnets.length ? appDistribution[appDistIndex++] : 0;
+    const instanceChipY = privateY + 86;
+    const instanceChips = Array.from({ length: instanceCount }, (_, chipIdx) => `
+      <rect x="${zoneX + 18 + (chipIdx * 44)}" y="${instanceChipY}" width="38" height="22" rx="6" fill="#0f766e" stroke="rgba(94,234,212,0.35)"></rect>
+      <text x="${zoneX + 37 + (chipIdx * 44)}" y="${instanceChipY + 14}" font-size="10" text-anchor="middle" fill="#ccfbf1" font-family="${'JetBrains Mono'}">app</text>
+    `).join('');
+
+    return `
+      <rect x="${zoneX}" y="${vpcY + 60}" width="${subnetWidth}" height="560" rx="18" fill="rgba(17,24,39,0.42)" stroke="rgba(148,163,184,0.18)"></rect>
+      <text x="${zoneX + 18}" y="${vpcY + 92}" font-size="14" fill="#ffffff" font-family="${'Syne'}">${zone.az}</text>
+      <text x="${zoneX + 18}" y="${vpcY + 110}" font-size="11" fill="#94a3b8" font-family="${'JetBrains Mono'}">Availability Zone</text>
+
+      <rect x="${zoneX + 10}" y="${publicY}" width="${subnetWidth - 20}" height="${subnetHeight}" rx="16" fill="rgba(16,185,129,0.10)" stroke="rgba(16,185,129,0.32)"></rect>
+      <text x="${zoneX + 24}" y="${publicY + 26}" font-size="12" fill="#86efac" font-family="${'JetBrains Mono'}">PUBLIC</text>
+      ${svgTextBlock(publicLines, zoneX + 24, publicY + 48, 16, '#ffffff', 13, 'Space Grotesk')}
+
+      <rect x="${zoneX + 10}" y="${privateY}" width="${subnetWidth - 20}" height="${subnetHeight}" rx="16" fill="rgba(239,68,68,0.10)" stroke="rgba(239,68,68,0.28)"></rect>
+      <text x="${zoneX + 24}" y="${privateY + 26}" font-size="12" fill="#fda4af" font-family="${'JetBrains Mono'}">PRIVATE</text>
+      ${svgTextBlock(privateLines, zoneX + 24, privateY + 48, 16, '#ffffff', 13, 'Space Grotesk')}
+      ${instanceChips}
+      ${zone.publicSubnets[0] && idx === firstPublicZoneIndex ? `
+        <rect x="${zoneX + 24}" y="${publicY + 86}" width="88" height="26" rx="8" fill="#0f172a" stroke="rgba(59,130,246,0.35)"></rect>
+        <text x="${zoneX + 68}" y="${publicY + 103}" font-size="11" text-anchor="middle" fill="#bfdbfe" font-family="${'JetBrains Mono'}">Bastion</text>
+        <rect x="${zoneX + 122}" y="${publicY + 86}" width="76" height="26" rx="8" fill="#1f2937" stroke="rgba(245,158,11,0.35)"></rect>
+        <text x="${zoneX + 160}" y="${publicY + 103}" font-size="11" text-anchor="middle" fill="#fde68a" font-family="${'JetBrains Mono'}">NAT GW</text>
+      ` : ''}
+      ${zone.privateSubnets.length ? `
+        <text x="${zoneX + 24}" y="${privateY + 80}" font-size="11" fill="#cbd5e1" font-family="${'JetBrains Mono'}">${instanceCount} ASG app node(s)</text>
+      ` : ''}
+    `;
+  }).join('');
+
+  const albStartX = vpcX + 40;
+  const albWidth = Math.max(220, vpcWidth - 80);
+  const rdsX = (width / 2) - 110;
+
+  return `
+    <svg class="arch-svg" id="architecture-svg" viewBox="0 0 ${width} ${height}" role="img" aria-label="AWS architecture diagram">
+      <defs>
+        <linearGradient id="vpcGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="rgba(0,212,255,0.16)"></stop>
+          <stop offset="100%" stop-color="rgba(124,58,237,0.10)"></stop>
+        </linearGradient>
+        <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="#7dd3fc"></path>
+        </marker>
+      </defs>
+
+      <rect x="${vpcX}" y="${vpcY}" width="${vpcWidth}" height="${vpcHeight}" rx="26" fill="url(#vpcGlow)" stroke="rgba(0,212,255,0.30)"></rect>
+      <text x="${vpcX + 24}" y="${vpcY + 34}" fill="#ffffff" font-size="20" font-family="${'Syne'}">${c.vpcName}</text>
+      <text x="${vpcX + 24}" y="${vpcY + 58}" fill="#94a3b8" font-size="12" font-family="${'JetBrains Mono'}">${c.region} • ${c.vpcCidr} • ${c.azCount} AZ(s)</text>
+
+      <ellipse cx="${width / 2}" cy="52" rx="92" ry="28" fill="rgba(0,212,255,0.08)" stroke="rgba(0,212,255,0.28)"></ellipse>
+      <text x="${width / 2}" y="58" text-anchor="middle" fill="#e0f2fe" font-size="14" font-family="${'Syne'}">Internet / Users</text>
+
+      <rect x="${(width / 2) - 64}" y="88" width="128" height="24" rx="12" fill="#0f172a" stroke="rgba(14,165,233,0.34)"></rect>
+      <text x="${width / 2}" y="104" text-anchor="middle" fill="#bae6fd" font-size="11" font-family="${'JetBrains Mono'}">${c.igwName}</text>
+
+      <rect x="${albStartX}" y="180" width="${albWidth}" height="36" rx="14" fill="rgba(245,158,11,0.11)" stroke="rgba(245,158,11,0.35)"></rect>
+      <text x="${width / 2}" y="203" text-anchor="middle" fill="#fde68a" font-size="14" font-family="${'Syne'}">${c.albName} · ALB</text>
+
+      ${zoneBlocks}
+
+      <rect x="${rdsX}" y="685" width="220" height="54" rx="16" fill="rgba(239,68,68,0.11)" stroke="rgba(248,113,113,0.34)"></rect>
+      <text x="${width / 2}" y="708" text-anchor="middle" fill="#fecdd3" font-size="14" font-family="${'Syne'}">${c.rdsId}</text>
+      <text x="${width / 2}" y="726" text-anchor="middle" fill="#fda4af" font-size="11" font-family="${'JetBrains Mono'}">${c.dbEngine} • port ${c.dbPort}</text>
+
+      <line x1="${width / 2}" y1="80" x2="${width / 2}" y2="88" stroke="#7dd3fc" stroke-width="2.5" marker-end="url(#arrow)"></line>
+      <line x1="${width / 2}" y1="112" x2="${width / 2}" y2="180" stroke="#7dd3fc" stroke-width="2.5" marker-end="url(#arrow)"></line>
+      <line x1="${width / 2}" y1="216" x2="${width / 2}" y2="250" stroke="#7dd3fc" stroke-width="2.5" marker-end="url(#arrow)"></line>
+      <line x1="${width / 2}" y1="216" x2="${width / 2}" y2="490" stroke="#7dd3fc" stroke-width="2.5" stroke-dasharray="8 6" marker-end="url(#arrow)"></line>
+      <line x1="${width / 2}" y1="640" x2="${width / 2}" y2="685" stroke="#7dd3fc" stroke-width="2.5" marker-end="url(#arrow)"></line>
+      <line x1="${width / 2}" y1="52" x2="${vpcX + 130}" y2="336" stroke="#7dd3fc" stroke-width="2" stroke-dasharray="7 6" marker-end="url(#arrow)"></line>
+
+      <text x="${width / 2 + 18}" y="152" fill="#94a3b8" font-size="11" font-family="${'JetBrains Mono'}">Ingress via IGW</text>
+      <text x="${width / 2 + 18}" y="360" fill="#94a3b8" font-size="11" font-family="${'JetBrains Mono'}">ALB to app tier</text>
+      <text x="${width / 2 + 18}" y="665" fill="#94a3b8" font-size="11" font-family="${'JetBrains Mono'}">App to DB</text>
+      <text x="${vpcX + 138}" y="350" fill="#94a3b8" font-size="11" font-family="${'JetBrains Mono'}">Admin SSH path</text>
+    </svg>
+  `;
+}
+
+function renderArchitectureSection(c) {
+  const subnets = subnetWithAz(c);
+  const azTopology = c.azNames.map(az => ({
+    az,
+    publicSubnets: subnets.filter(s => s.az === az && s.type === 'public'),
+    privateSubnets: subnets.filter(s => s.az === az && s.type === 'private')
+  }));
+  const checks = getArchitectureChecks(c, azTopology);
+  const statusCounts = {
+    ok: checks.filter(item => item.level === 'ok').length,
+    warn: checks.filter(item => item.level === 'warn').length,
+    miss: checks.filter(item => item.level === 'miss').length
+  };
+
+  return `
+    <section id="architecture" class="arch-section">
+      <div class="arch-title">
+        <div>
+          <div class="arch-kicker">Dynamic Architecture Diagram Generator</div>
+          <h2>${c.env.toUpperCase()} AWS Topology Blueprint</h2>
+        </div>
+      </div>
+      <div class="arch-body">
+        <div class="arch-toolbar">
+          <div>
+            <div class="arch-kicker">Rendered From Your Inputs</div>
+            <p>Yeh diagram aapke VPC, AZ, subnet, ALB, Auto Scaling, aur RDS parameters se live generate ho raha hai takay exam ke liye static screenshot ki jagah exact topology samajh aaye.</p>
+          </div>
+          <div class="arch-actions">
+            <button class="arch-btn" onclick="downloadArchitecture()">Download SVG</button>
+            <button class="arch-btn" onclick="showWizard()">Edit Inputs</button>
+          </div>
+        </div>
+
+        <div class="arch-grid">
+          <div class="arch-card">
+            <h3>Architecture Diagram</h3>
+            <div class="diagram-wrap">${renderArchitectureSvg(c, azTopology)}</div>
+            <div class="arch-legend">
+              <span><i style="background:rgba(16,185,129,0.55)"></i> Public subnet tier</span>
+              <span><i style="background:rgba(239,68,68,0.55)"></i> Private subnet tier</span>
+              <span><i style="background:rgba(245,158,11,0.55)"></i> Internet-facing ALB</span>
+              <span><i style="background:rgba(15,118,110,0.9)"></i> ASG app instances</span>
+            </div>
+          </div>
+
+          <div class="arch-card">
+            <h3>Coverage & Validation</h3>
+            <div class="arch-meta">
+              <div class="arch-meta-item"><span>Region</span><strong>${c.region}</strong></div>
+              <div class="arch-meta-item"><span>AZ Layout</span><strong>${c.azNames.join(', ')}</strong></div>
+              <div class="arch-meta-item"><span>Subnets</span><strong>${c.subnets.length} total / ${c.publicSubnets.length} public / ${c.privateSubnets.length} private</strong></div>
+              <div class="arch-meta-item"><span>Compute</span><strong>${c.asgDesired} desired app nodes on ${c.instanceType}</strong></div>
+              <div class="arch-meta-item"><span>Entry</span><strong>${c.albName} on port ${c.appPort}</strong></div>
+              <div class="arch-meta-item"><span>Data</span><strong>${c.dbEngine} (${c.rdsId}) on port ${c.dbPort}</strong></div>
+            </div>
+
+            <div class="arch-list">
+              <div class="arch-list-item">
+                <strong>Traffic Flow</strong>
+                <p>Internet → Internet Gateway → ALB → private app instances → RDS. Admin SSH path is Laptop → Bastion → private app instance.</p>
+              </div>
+              <div class="arch-list-item">
+                <strong>Security Intent</strong>
+                <p>ALB accepts internet traffic, app servers accept SSH only from the bastion and app traffic from the ALB, and RDS accepts traffic only from the app security group.</p>
+              </div>
+              <div class="arch-list-item">
+                <strong>Egress Design</strong>
+                <p>Private subnets use NAT for outbound updates. The current walkthrough keeps that NAT in the first public subnet for simplicity and exam speed.</p>
+              </div>
+            </div>
+
+            <div class="arch-checklist">
+              ${checks.map(item => `
+                <div class="arch-check check-${item.level}">
+                  <strong>${item.title}</strong>
+                  <span>${item.detail}</span>
+                </div>
+              `).join('')}
+            </div>
+
+            <div class="arch-footnote">
+              Validation summary: ${statusCounts.ok} ready, ${statusCounts.warn} caution, ${statusCounts.miss} missing.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  `;
+}
+
 // ══════ RENDER GUIDE ══════
 function renderGuide() {
   const c = cfg;
-  const subnetTableRows = c.subnets.map(s =>
-    `<tr><td>${s.name}</td><td>${s.type==='public'? '<span class="tag tag-green">Public</span>' : '<span class="tag tag-red">Private</span>'}</td><td>${s.cidr}</td><td>${c.azNames[c.subnets.indexOf(s) % c.azCount] || c.azNames[0]}</td></tr>`
+  const subnetDetails = subnetWithAz(c);
+  const subnetTableRows = subnetDetails.map(s =>
+    `<tr><td>${s.name}</td><td>${s.type==='public'? '<span class="tag tag-green">Public</span>' : '<span class="tag tag-red">Private</span>'}</td><td>${s.cidr}</td><td>${s.az}</td></tr>`
   ).join('');
 
   const privateSubnetsForRDS = c.privateSubnets.slice(0, 2).map(s =>
@@ -1264,8 +1776,10 @@ echo "<h1>Hello from ${c.appName}!</h1><p>Server: $(hostname)</p>" > /var/www/ht
   }
 
   const dbProtocol = c.dbEngine.includes('PostgreSQL') ? 'PostgreSQL/Aurora' : 'MySQL/Aurora';
+  const dbTemplate = c.dbEngine.includes('Aurora') ? 'Dev/Test' : 'Free tier';
 
   const html = `
+${renderArchitectureSection(c)}
 
 <!-- ════════ PART 1 ════════ -->
 <div id="part1" class="part-header">
@@ -1455,12 +1969,12 @@ echo "<h1>Hello from ${c.appName}!</h1><p>Server: $(hostname)</p>" > /var/www/ht
     <span class="step-chevron">▼</span>
   </div>
   <div class="step-body">
-    <div class="why-box"><div class="why-label">💡 Why?</div><p>App server sirf Bastion se SSH accept karta hai. HTTP port ${appPort} se web traffic allow hai. Security Group chaining!</p></div>
+    <div class="why-box"><div class="why-label">💡 Why?</div><p>App server sirf Bastion se SSH accept karta hai aur sirf ALB se application traffic leta hai. Is se app instances internet par directly expose nahi hote.</p></div>
     <table class="sg-table">
       <thead><tr><th>Type</th><th>Port</th><th>Source</th></tr></thead>
       <tbody>
         <tr><td>SSH</td><td>22</td><td><span class="tag tag-purple">${c.sgBastion}</span></td></tr>
-        <tr><td>HTTP</td><td>${appPort}</td><td><span class="tag tag-green">0.0.0.0/0</span></td></tr>
+        <tr><td>HTTP</td><td>${appPort}</td><td><span class="tag tag-purple">${c.sgAlb}</span></td></tr>
       </tbody>
     </table>
   </div>
@@ -1572,7 +2086,7 @@ echo "<h1>Hello from ${c.appName}!</h1><p>Server: $(hostname)</p>" > /var/www/ht
   <div class="step-body">
     <ul class="steps-list">
       <li><span class="step-dot">1</span><span>RDS → Databases → Create database</span></li>
-      <li><span class="step-dot">2</span><span>Standard create → Engine: <strong>${c.dbEngine}</strong> → Template: <span class="tag tag-green">Free tier</span></span></li>
+      <li><span class="step-dot">2</span><span>Standard create → Engine: <strong>${c.dbEngine}</strong> → Template: <span class="tag tag-green">${dbTemplate}</span></span></li>
       <li><span class="step-dot">3</span><span>DB identifier: <span class="tag tag-blue">${c.rdsId}</span></span></li>
       <li><span class="step-dot">4</span><span>Master username: <strong>${c.dbUser}</strong> | Password: strong password banayein aur <strong>SAVE KAREIN!</strong></span></li>
       <li><span class="step-dot">5</span><span>VPC: ${c.vpcName} | Subnet group: <span class="tag tag-blue">${c.rdsSubnetGroup}</span></span></li>
@@ -1775,6 +2289,21 @@ function copyCode(btn) {
   }).catch(() => {
     btn.textContent = 'Select & copy manually';
   });
+}
+
+function downloadArchitecture() {
+  const svg = document.getElementById('architecture-svg');
+  if (!svg) return;
+
+  const blob = new Blob([svg.outerHTML], { type: 'image/svg+xml;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = `${cfg.env || 'architecture'}-diagram.svg`;
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  URL.revokeObjectURL(url);
 }
 
 // ══════ INIT ══════
